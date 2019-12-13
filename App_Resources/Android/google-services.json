@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "578296218363",
+    "firebase_url": "https://mywallet-4ec0f.firebaseio.com",
+    "project_id": "mywallet-4ec0f",
+    "storage_bucket": "mywallet-4ec0f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:578296218363:android:e0c79bd28999f19d95665e",
+        "android_client_info": {
+          "package_name": "org.nativescript.nativRadio"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "578296218363-vup5gsgdj66v6tqhlmm4b2h4v8iti977.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBdi4n2_s4_ZSGpF_mc5lOIw2LkmuFQeg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "578296218363-vup5gsgdj66v6tqhlmm4b2h4v8iti977.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "578296218363-40ceeceanuqi4j7d6s2390jliesommhq.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.nativescript.nativRadio"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

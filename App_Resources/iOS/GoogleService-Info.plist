@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>578296218363-40ceeceanuqi4j7d6s2390jliesommhq.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.578296218363-40ceeceanuqi4j7d6s2390jliesommhq</string>
+	<key>API_KEY</key>
+	<string>AIzaSyA-vu6xRjeIW8nYa5ulJ43vbdKQEqySAVA</string>
+	<key>GCM_SENDER_ID</key>
+	<string>578296218363</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>org.nativescript.nativRadio</string>
+	<key>PROJECT_ID</key>
+	<string>mywallet-4ec0f</string>
+	<key>STORAGE_BUCKET</key>
+	<string>mywallet-4ec0f.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:578296218363:ios:b93d104b2d113ac195665e</string>
+	<key>DATABASE_URL</key>
+	<string>https://mywallet-4ec0f.firebaseio.com</string>
+</dict>
+</plist>
