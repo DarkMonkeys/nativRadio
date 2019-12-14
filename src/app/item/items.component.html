@@ -10,7 +10,14 @@ So you can still use template expressions, bindings, templates as well as all th
 The ActionBar is the NativeScript common abstraction over the Android ActionBar and iOS NavigationBar.
 http://docs.nativescript.org/ui/action-bar
 -->
-<ActionBar title="My App">
+
+
+<ActionBar title="NativRadio">
+    <StackLayout orientation="horizontal"
+    ios:horizontalAlignment="center"
+    android:horizontalAlignment="center">
+    <Image src="~/app/images/logo.png" class="action-image" loadMode="async" ></Image>
+  </StackLayout>
 </ActionBar>
 
 <!--
@@ -23,12 +30,25 @@ These components make use of the NativeScript core theme, which styles them with
 The theme also provides a set of helper class names such as p-20, h1, h2, and text-center to enhance styling.
 You can learn more about the NativeScript core theme at https://github.com/nativescript/theme
 -->
+
 <GridLayout>
-    <ListView [items]="items">
-        <ng-template let-item="item">
-            <StackLayout>
-                <Label [nsRouterLink]="['/item', item.id]" [text]="item.name"></Label>
+    <StackLayout>
+    <SearchBar class="searchbar" hint="Rechercher une radio ..."
+    [text]="searchPhrase"  (submit)="searchRadio($event)">
+</SearchBar>
+    <ListView class="listviewHome" [items]="items" >
+
+        <ng-template let-item="item">    
+                    
+            <StackLayout  (tap)="onNavigate(item.id)" style="height:400px">
+                
+            <StackLayout class="box">
+                </StackLayout>
+                <img class="image-list" [src]="item.image" />
+                <Label  class="text-home" [text]="item.nom"></Label>
             </StackLayout>
+            
         </ng-template>
     </ListView>
+</StackLayout>
 </GridLayout>

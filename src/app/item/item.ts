@@ -1,5 +1,7 @@
 export interface Item {
     id: number;
-    name: string;
-    role: string;
+    nom: String;
+    streamurl: string;
+    description: string;
+    image:string;
 }

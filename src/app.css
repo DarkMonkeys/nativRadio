@@ -23,3 +23,15 @@ The following CSS rule changes the font size of all Buttons that have the
 Button.-primary {
     font-size: 18;
 }
+.action-image {
+    width: auto;
+    height: 120px;
+    vertical-align: center;
+}
+
+.action-label {
+    color: #fcba03;
+    font-size: 24;
+    font-weight: bold;
+    vertical-align: center;
+}
