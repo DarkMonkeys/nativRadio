@@ -4,8 +4,13 @@ import { TNSPlayer } from "nativescript-audio";
 import { isIOS } from "tns-core-modules/platform";
 import { Item } from "./item";
 import { ItemService } from "./item.service";
-import { Video } from 'nativescript-videoplayer';
-import { AsyncAction } from "rxjs/internal/scheduler/AsyncAction";
+import {
+    LoadingIndicator,
+    Mode,
+    OptionsCommon
+  } from '@nstudio/nativescript-loading-indicator';
+import { ActivityIndicator } from "tns-core-modules/ui/activity-indicator";
+import { EventData } from "tns-core-modules/data/observable";
 var imageCache = require("nativescript-web-image-cache");
 var frameModule = require("ui/frame");
 @Component({
@@ -20,6 +25,7 @@ export class ItemDetailComponent implements OnInit, OnDestroy {
     _checkInterval;
     progress = 0;
     isPlaying = false;
+    isBusy: boolean = true;
 
 
     constructor(
@@ -27,7 +33,14 @@ export class ItemDetailComponent implements OnInit, OnDestroy {
         private route: ActivatedRoute) {
 
             imageCache.initialize();
+            setTimeout(() => {
+                this.isBusy = false;
+            }, 8000);
            
+    }
+    onBusyChanged(args: EventData) {
+        let indicator: ActivityIndicator = <ActivityIndicator>args.object;
+        console.log("indicator.busy changed to: " + indicator.busy);
     }
 
     ngOnInit(): void {
@@ -89,4 +102,6 @@ export class ItemDetailComponent implements OnInit, OnDestroy {
     ngOnDestroy() {
         clearInterval(this._checkInterval);
     }
+
+    
 }

@@ -8,6 +8,9 @@ import { SearchBar } from "tns-core-modules/ui/search-bar";
 import { registerElement } from "nativescript-angular";
 registerElement("WebImage", () => require("nativescript-web-image-cache").WebImage);
 var imageCache = require("nativescript-web-image-cache");
+import { Fontawesome } from 'nativescript-fontawesome';
+
+
 
 @Component({
     selector: "ns-items",
@@ -15,14 +18,16 @@ var imageCache = require("nativescript-web-image-cache");
     styleUrls: ['./items-components.css']
 })
 export class ItemsComponent implements OnInit {
-    items: Array<Item>;
-    itemsNew: Array<Item>;
+    private items = new Map<String,Item>();
+    private itemsNew = new Map<String,Item>();
     transitions;
     searchPhrase: string;
     constructor(private itemService: ItemService, private router: RouterExtensions) {imageCache.initialize();}
 
     ngOnInit(): void {
+        Fontawesome.init();
          this.items = this.itemService.getItems();
+         //this.items.get("Rouge FM").description = "true";
          if (ios) {
             this.transitions = ["flip"];
         } else {
@@ -40,19 +45,19 @@ export class ItemsComponent implements OnInit {
                 }
             });
     }
-     searchRadio() {
+     searchRadio(args) {
 
-       //     this.items = this.itemService.getItems().filter(item => item.nom.toUpperCase().includes(this.searchPhrase.toUpperCase()));
-       
-       this.items = null;
-       this.itemService.getItems().forEach(element => {
-           
-        if(element.nom.toUpperCase().includes(this.searchPhrase.toUpperCase())){
+           // this.items = this.itemService.getItems().filter(item => item.nom.toUpperCase().includes(this.searchPhrase.toUpperCase()));
 
-            this.items.push(element);
+       this.itemsNew.clear();
+        const searchBar = args.object as SearchBar;
+        this.itemService.getItems().forEach((value: Item, key: String) => {
+        if(key.toLowerCase().includes(searchBar.text.toLowerCase())){
+        this.itemsNew.set(key,value);
         }
-           
-       });
+    });
+    this.items = this.itemsNew;
+
      }
 
      onClear(){

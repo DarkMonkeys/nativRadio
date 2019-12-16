@@ -34,22 +34,22 @@ You can learn more about the NativeScript core theme at https://github.com/nativ
 <GridLayout>
     <StackLayout>
     <SearchBar class="searchbar" hint="Rechercher une radio ..."
-    [text]="searchPhrase"  (submit)="searchRadio()" (clear)="onClear()" (textChange)="searchRadio()" color="white" backgroundColor="orange"
+    [text]="searchPhrase"  (submit)="searchRadio($event)" (textChange)="searchRadio($event)" (clear)="onClear()"  color="white" backgroundColor="orange"
     >
 </SearchBar>
-    <ListView class="listviewHome" [items]="items" >
-
-        <ng-template let-item="item">    
-                    
-            <StackLayout  (tap)="onNavigate(item.id)" style="height:400px">     
-            <StackLayout class="box">
+    <ScrollView>
+        <StackLayout>
+        <StackLayout class="listviewHome" *ngFor="let item of items | keyvalue;let i = index">  
+            <StackLayout  (tap)="onNavigate(item.value.id)" style="height:400px">     
+            <StackLayout class="box" *ngIf="i > 0">
                 </StackLayout>
-               <!-- <img class="image-list" [src]="item.image" />-->
-               <WebImage class="image-list" [src]="item.image" stretch="Fill">
+               <WebImage class="image-list" [src]="item.value.image" stretch="Fill">
               </WebImage>
-                <Label  class="text-home" [text]="item.nom"></Label>
+                <Label  class="text-home" [text]="item.key"></Label>
+                <Label class="fab" style="font-size: 50em; color: black" text="&#xf09b;"></Label>
             </StackLayout>
-        </ng-template>
-    </ListView>
+        </StackLayout>
+    </StackLayout>
+    </ScrollView>
 </StackLayout>
 </GridLayout>
