@@ -5,6 +5,9 @@ const firebase = require("nativescript-plugin-firebase");
 import { RouterExtensions } from "nativescript-angular/router";
 import { ios } from "tns-core-modules/application";
 import { SearchBar } from "tns-core-modules/ui/search-bar";
+import { registerElement } from "nativescript-angular";
+registerElement("WebImage", () => require("nativescript-web-image-cache").WebImage);
+var imageCache = require("nativescript-web-image-cache");
 
 @Component({
     selector: "ns-items",
@@ -16,7 +19,7 @@ export class ItemsComponent implements OnInit {
     itemsNew: Array<Item>;
     transitions;
     searchPhrase: string;
-    constructor(private itemService: ItemService, private router: RouterExtensions) { }
+    constructor(private itemService: ItemService, private router: RouterExtensions) {imageCache.initialize();}
 
     ngOnInit(): void {
          this.items = this.itemService.getItems();
@@ -38,14 +41,22 @@ export class ItemsComponent implements OnInit {
             });
     }
      searchRadio() {
-            
-        if(this.searchPhrase == null){
-            console.log(this.searchPhrase);
-            this.items = this.itemService.getItems();
-        }else{
-            console.log(this.searchPhrase);
-            this.items = this.itemService.getItems().filter((item) => item.nom.includes(this.searchPhrase));
+
+       //     this.items = this.itemService.getItems().filter(item => item.nom.toUpperCase().includes(this.searchPhrase.toUpperCase()));
+       
+       this.items = null;
+       this.itemService.getItems().forEach(element => {
+           
+        if(element.nom.toUpperCase().includes(this.searchPhrase.toUpperCase())){
+
+            this.items.push(element);
         }
+           
+       });
+     }
+
+     onClear(){
+        this.items = this.itemService.getItems();
      }
         
     }

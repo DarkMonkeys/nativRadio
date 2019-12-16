@@ -5,11 +5,15 @@
     </FlexboxLayout>
     <StackLayout class="home-panel">
         
-        <Image width="50%" loadMode="async" [src]="item.image"></Image>
+        <!--<Image width="50%" loadMode="async" [src]="item.image"></Image>-->
+        <WebImage  class="image-list" [src]="item.image">
+        </WebImage>
+        
         <Label class="h3 m-15" [text]="item.description"></Label>
         <StackLayout class="home-panel">
             <Progress [value]="progress" ></Progress>
             <Button class="button-player" [text]="isPlaying ? 'Pause' : 'Play'" (tap)="playPause()" ></Button>
+            <button class="button-player" text="Refresh" (tap)="resume()"></button>
         </StackLayout>
     </StackLayout>
 </FlexboxLayout>

@@ -6,7 +6,8 @@ import { Item } from "./item";
 import { ItemService } from "./item.service";
 import { Video } from 'nativescript-videoplayer';
 import { AsyncAction } from "rxjs/internal/scheduler/AsyncAction";
-
+var imageCache = require("nativescript-web-image-cache");
+var frameModule = require("ui/frame");
 @Component({
     selector: "ns-details",
     moduleId: module.id,
@@ -24,6 +25,8 @@ export class ItemDetailComponent implements OnInit, OnDestroy {
     constructor(
         private itemService: ItemService,
         private route: ActivatedRoute) {
+
+            imageCache.initialize();
            
     }
 
@@ -31,7 +34,20 @@ export class ItemDetailComponent implements OnInit, OnDestroy {
         
         const id = +this.route.snapshot.params.id;
         this.item = this.itemService.getItem(id);
-        
+        this.playerLoad();
+       
+    }
+    playPause() {
+        if (this.player.isAudioPlaying()) {
+            this.player.pause();
+        } else {
+            
+            this.player.play();
+            
+        }
+    }
+    playerLoad(){
+
         this.player = new TNSPlayer();
         this.player.android;
 
@@ -39,7 +55,6 @@ export class ItemDetailComponent implements OnInit, OnDestroy {
             audioFile: this.item.streamurl, //this.item.streamurl,  https://www.w3schools.com/html/horse.mp3
             loop: false,
             autoplay: false,
-            encoder: 3,
         };
 
         this.player
@@ -67,12 +82,8 @@ export class ItemDetailComponent implements OnInit, OnDestroy {
                 });
             }, 200);
     }
-    playPause() {
-        if (this.player.isAudioPlaying()) {
-            this.player.pause();
-        } else {
-            this.player.play();
-        }
+    resume(){
+        this.playerLoad();
     }
 
     ngOnDestroy() {

@@ -1,6 +1,6 @@
 export interface Item {
     id: number;
-    nom: String;
+    nom: string;
     streamurl: string;
     description: string;
     image:string;
