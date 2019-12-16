@@ -2,7 +2,6 @@ import { Injectable } from "@angular/core";
 const firebase = require("nativescript-plugin-firebase");
 import { Item } from "./item";
 const db = firebase.database();
-
 @Injectable({
     providedIn: "root"
 })
@@ -23,11 +22,8 @@ export class ItemService {
         );
 
     constructor(){
-
-
-        //Appel Firebase
-        //var radio = firebase.ref('radio');
         
+        //Appel Firebase
        /* db.ref("radio").on('value', (snap) => {
              var rootVals = snap.val();
              console.log(rootVals);
