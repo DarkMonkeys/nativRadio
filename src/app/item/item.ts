@@ -3,4 +3,5 @@ export interface Item {
     streamurl: string;
     description: string;
     image:string;
+    favoris:boolean;
 }

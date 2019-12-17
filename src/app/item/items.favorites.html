@@ -39,18 +39,19 @@ You can learn more about the NativeScript core theme at https://github.com/nativ
 </SearchBar>
     <ScrollView>
         <StackLayout>
-            <button (tap)="navFavorite()" text="LINK FAVORIS"></button>
         <StackLayout class="listviewHome" *ngFor="let item of items | keyvalue;let i = index">  
-            <StackLayout   style="height:400px">     
+            <StackLayout *ngIf = "item.value.favoris === true">
+            <StackLayout  style="height:400px">     
             <StackLayout class="box" *ngIf="i > 0">
                 </StackLayout>
-               <WebImage (tap)="onNavigate(item.value.id)" class="image-list" [src]="item.value.image" stretch="Fill">
+               <WebImage  (tap)="onNavigate(item.value.id)" class="image-list" [src]="item.value.image" stretch="Fill">
               </WebImage>
                 <GridLayout rows="auto" columns="auto *">
                     <button style="margin-left:80%;margin-top:-40px;" [color]="item.value.favoris ? 'red':'green'" class="button-player" [text]="item.value.favoris ? 'Remove' : 'Add'" (tap)="addFavorite(item.key,item.value.favoris)"></button>
                     <Label  class="text-home" [text]="item.key"></Label>
-                </GridLayout>
+                 </GridLayout>
             </StackLayout>
+         </StackLayout>
         </StackLayout>
     </StackLayout>
     </ScrollView>

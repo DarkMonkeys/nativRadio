@@ -27,6 +27,7 @@
     "nativescript-exoplayer": "^4.0.1",
     "nativescript-fontawesome": "^1.0.0",
     "nativescript-image-cache": "^1.1.6",
+    "nativescript-localstorage": "^2.0.1",
     "nativescript-plugin-firebase": "^10.3.2",
     "nativescript-videoplayer": "^4.2.1",
     "nativescript-web-image-cache": "^5.0.0",

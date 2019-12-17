@@ -13,21 +13,19 @@ var imageCache = require("nativescript-web-image-cache");
 
 @Component({
     selector: "ns-items",
-    templateUrl: "./items.component.html",
-    styleUrls: ['./items-components.css']
+    templateUrl: "./items.favorites.html",
+    styleUrls: ['./items-favorites.css']
 })
-export class ItemsComponent implements OnInit {
+export class Favorites implements OnInit {
     private items = new Map<String,Item>();
     private itemsNew = new Map<String,Item>();
     transitions;
     searchPhrase: string;
-    colorize:string;
-    constructor(private itemService: ItemService, private router: RouterExtensions) {imageCache.initialize();
-
-    }
+    constructor(private itemService: ItemService, private router: RouterExtensions) {imageCache.initialize();}
 
     ngOnInit(): void {
          this.items = this.itemService.getItems();
+         //this.items.get("Rouge FM").description = "true";
          if (ios) {
             this.transitions = ["flip"];
         } else {
@@ -45,8 +43,8 @@ export class ItemsComponent implements OnInit {
                 }
             });
     }
-    navFavorite(): void {
-        this.router.navigate(['favorites'],
+    navHome(): void {
+        this.router.navigate(['items'],
             {
                 animated: true,
                 transition: {
@@ -76,10 +74,12 @@ export class ItemsComponent implements OnInit {
         if(etat){
 
             this.items.get(keyItem).favoris = false;
+            localStorage.setItem("favoris",JSON.stringify(this.items));
 
         } else{
 
             this.items.get(keyItem).favoris = true;
+            localStorage.setItem("favoris",JSON.stringify(this.items));
         }
    }
 

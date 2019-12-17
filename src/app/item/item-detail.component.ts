@@ -35,7 +35,7 @@ export class ItemDetailComponent implements OnInit, OnDestroy {
             imageCache.initialize();
             setTimeout(() => {
                 this.isBusy = false;
-            }, 8000);
+            }, 4000);
            
     }
     onBusyChanged(args: EventData) {

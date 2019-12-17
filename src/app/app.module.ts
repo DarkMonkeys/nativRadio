@@ -6,6 +6,9 @@ import { ItemsComponent } from "./item/items.component";
 import { ItemDetailComponent } from "./item/item-detail.component";
 import { registerElement } from "nativescript-angular";
 registerElement("WebImage", () => require("nativescript-web-image-cache").WebImage);
+import { Fontawesome } from 'nativescript-fontawesome';
+import { Favorites } from "./item/items.favorites";
+Fontawesome.init();
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
 // import { NativeScriptFormsModule } from "nativescript-angular/forms";
@@ -24,7 +27,8 @@ registerElement("WebImage", () => require("nativescript-web-image-cache").WebIma
     declarations: [
         AppComponent,
         ItemsComponent,
-        ItemDetailComponent
+        ItemDetailComponent,
+        Favorites
     ],
     providers: [],
     schemas: [
