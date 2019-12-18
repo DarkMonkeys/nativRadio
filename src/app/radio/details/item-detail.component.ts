@@ -2,17 +2,11 @@ import { Component, OnInit, OnDestroy } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { TNSPlayer } from "nativescript-audio";
 import { isIOS } from "tns-core-modules/platform";
-import { Item } from "./item";
-import { ItemService } from "./item.service";
-import {
-    LoadingIndicator,
-    Mode,
-    OptionsCommon
-  } from '@nstudio/nativescript-loading-indicator';
+import { Item } from "../item";
+import { ItemService } from "../item.service";
 import { ActivityIndicator } from "tns-core-modules/ui/activity-indicator";
 import { EventData } from "tns-core-modules/data/observable";
 var imageCache = require("nativescript-web-image-cache");
-var frameModule = require("ui/frame");
 @Component({
     selector: "ns-details",
     moduleId: module.id,

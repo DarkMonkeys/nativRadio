@@ -1,7 +1,6 @@
 import { Injectable } from "@angular/core";
-const firebase = require("nativescript-plugin-firebase");
 import { Item } from "./item";
-const appSettings = require("tns-core-modules/application-settings");
+import {firebase} from "../code/firebase-app.js"
 @Injectable({
     providedIn: "root"
 })
@@ -16,6 +15,20 @@ export class ItemService {
         
 
     constructor(){
+
+  // Your web app's Firebase configuration
+  /*var firebaseConfig = {
+    apiKey: "AIzaSyAIp6LYPE7yvzd1qyJSAHsofRTN5tgSUCA",
+    authDomain: "mywallet-4ec0f.firebaseapp.com",
+    databaseURL: "https://mywallet-4ec0f.firebaseio.com",
+    projectId: "mywallet-4ec0f",
+    storageBucket: "mywallet-4ec0f.appspot.com",
+    messagingSenderId: "578296218363",
+    appId: "1:578296218363:web:475881a33bf8a68695665e"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);*/
+
 
         this.items.set("Rouge FM",{ id: 1, streamurl: "https://onefm.ice.infomaniak.ch/rougefm-high.mp3", image: "https://upload.wikimedia.org/wikipedia/fr/9/92/Rouge_FM_2011_logo.png",description:"quel couleur ta radio?", favoris:true }),
         this.items.set("Radio Lac",{ id: 2, streamurl: "https://radiolac.ice.infomaniak.ch/radiolac-high.mp3", image: "https://www.rts.ch/2018/08/31/14/11/9812189.image/16x9/scale/width/624",description:"quel couleur ta radio?",favoris:true }),
@@ -55,14 +68,15 @@ export class ItemService {
 
             return this.items;
         }*/
-        console.log("hello");
+        /*
         if(localStorage.getItem("favoris") === null){
-            console.log("test");
+     
             return this.items;
         }
-        console.log("test2");
             var retrievedObject = localStorage.getItem('favoris');
-            return this.items = JSON.parse(retrievedObject);
+            return this.items = JSON.parse(retrievedObject);*/
+
+            return this.items;
     
     }
 

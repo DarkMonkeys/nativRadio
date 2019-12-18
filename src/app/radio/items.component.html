@@ -34,10 +34,26 @@ You can learn more about the NativeScript core theme at https://github.com/nativ
 <GridLayout>
     <StackLayout>
     <SearchBar class="searchbar" hint="Rechercher une radio ..."
-    [text]="searchPhrase"  (submit)="searchRadio($event)" (textChange)="searchRadio($event)" (clear)="onClear()"  color="white" backgroundColor="orange"
+    [text]="searchPhrase"  (submit)="searchRadio($event)" (textChange)="textChangeRadio($event)" (clear)="onClear($event)"  color="white" backgroundColor="orange"
     >
 </SearchBar>
-    <ScrollView>
+    <ScrollView height="86%" [visibility]="scroll1">
+        <StackLayout #secondTextFieldId>
+        <StackLayout class="listviewHome" *ngFor="let item of items | keyvalue;let i = index">  
+            <StackLayout   style="height:400px">     
+            <StackLayout class="box" *ngIf="i > 0">
+                </StackLayout>
+               <WebImage (tap)="onNavigate(item.value.id)" class="image-list" [src]="item.value.image" stretch="Fill">
+              </WebImage>
+                <GridLayout rows="auto" columns="auto *">
+                    <button style="margin-left:80%;margin-top:-40px;" [color]="item.value.favoris ? 'red':'green'" class="button-player" [text]="item.value.favoris ? 'Remove' : 'Add'" (tap)="addFavorite(item.key,item.value.favoris)"></button>
+                    <Label  class="text-home" [text]="item.key"></Label>
+                </GridLayout>
+            </StackLayout>
+        </StackLayout>
+    </StackLayout>
+    </ScrollView>
+    <ScrollView height="86%" [visibility]="scroll2">
         <StackLayout>
         <StackLayout class="listviewHome" *ngFor="let item of items | keyvalue;let i = index">  
             <StackLayout *ngIf = "item.value.favoris === true">
@@ -55,5 +71,6 @@ You can learn more about the NativeScript core theme at https://github.com/nativ
         </StackLayout>
     </StackLayout>
     </ScrollView>
+    <BottomBar row="1" (tabSelected)="tabSelected($event)"></BottomBar>
 </StackLayout>
 </GridLayout>
