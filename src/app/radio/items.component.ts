@@ -8,7 +8,7 @@ import { registerElement } from "nativescript-angular";
 registerElement("WebImage", () => require("nativescript-web-image-cache").WebImage);
 var imageCache = require("nativescript-web-image-cache");
 import * as Toast from 'nativescript-toast';
-
+import { Page, isAndroid } from "tns-core-modules/ui/page/page";
 
 @Component({
     selector: "ns-items",
@@ -51,25 +51,24 @@ export class ItemsComponent implements OnInit {
 
 
     textChangeRadio(args) {
-
-        // this.items = this.itemService.getItems().filter(item => item.nom.toUpperCase().includes(this.searchPhrase.toUpperCase()));
-
+       
     this.itemsNew.clear();
      const searchBar = args.object as SearchBar;
+     if (searchBar != null){
      this.itemService.getItems().forEach((value: Item, key: String) => {
      if(key.toLowerCase().includes(searchBar.text.toLowerCase())){
      this.itemsNew.set(key,value);
      }
  });
  this.items = this.itemsNew;
+}
 
   }
      searchRadio(args) {
 
-           // this.items = this.itemService.getItems().filter(item => item.nom.toUpperCase().includes(this.searchPhrase.toUpperCase()));
-
        this.itemsNew.clear();
         const searchBar = args.object as SearchBar;
+        if (searchBar != null){
         this.itemService.getItems().forEach((value: Item, key: String) => {
         if(key.toLowerCase().includes(searchBar.text.toLowerCase())){
         this.itemsNew.set(key,value);
@@ -77,6 +76,7 @@ export class ItemsComponent implements OnInit {
     });
     this.items = this.itemsNew;
     searchBar.dismissSoftInput();
+}
      }
 
      addFavorite(keyItem: string, etat: boolean){
@@ -94,12 +94,16 @@ export class ItemsComponent implements OnInit {
             toast.show();
         }
    }
-
+   
+    sBLoaded(args){
+    const searchBar = args.object as SearchBar;
+    searchBar.dismissSoftInput();
+  
+}
      onClear(args){
         this.items = this.itemService.getItems();
         const searchBar = args.object as SearchBar;
         searchBar.dismissSoftInput();
-        
      }
      
      tabSelected(args: number) {

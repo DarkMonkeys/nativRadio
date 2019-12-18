@@ -33,21 +33,22 @@ You can learn more about the NativeScript core theme at https://github.com/nativ
 
 <GridLayout>
     <StackLayout>
-    <SearchBar class="searchbar" hint="Rechercher une radio ..."
+    <SearchBar id="searchbar" (loaded)="sBLoaded($event)" class="searchbar" hint="Rechercher une radio ..."
     [text]="searchPhrase"  (submit)="searchRadio($event)" (textChange)="textChangeRadio($event)" (clear)="onClear($event)"  color="white" backgroundColor="orange"
     >
 </SearchBar>
     <ScrollView height="86%" [visibility]="scroll1">
         <StackLayout #secondTextFieldId>
         <StackLayout class="listviewHome" *ngFor="let item of items | keyvalue;let i = index">  
-            <StackLayout   style="height:400px">     
+            <StackLayout   style="height:420px">     
             <StackLayout class="box" *ngIf="i > 0">
                 </StackLayout>
                <WebImage (tap)="onNavigate(item.value.id)" class="image-list" [src]="item.value.image" stretch="Fill">
               </WebImage>
-                <GridLayout rows="auto" columns="auto *">
-                    <button style="margin-left:80%;margin-top:-40px;" [color]="item.value.favoris ? 'red':'green'" class="button-player" [text]="item.value.favoris ? 'Remove' : 'Add'" (tap)="addFavorite(item.key,item.value.favoris)"></button>
-                    <Label  class="text-home" [text]="item.key"></Label>
+                <GridLayout  rows="auto" columns="auto *">
+                    <button  *ngIf="item.value.favoris == false" style="margin-left:75%;margin-top:-50px;" color="orange" class="far" text="&#xf005;" (tap)="addFavorite(item.key,item.value.favoris)"></button>
+                    <button  *ngIf="item.value.favoris == true" style="margin-left:75%;margin-top:-50px;" color="orange" class="fas" text="&#xf005;" (tap)="addFavorite(item.key,item.value.favoris)"></button>
+                    <Label    class="text-home" [text]="item.key"></Label>
                 </GridLayout>
             </StackLayout>
         </StackLayout>
@@ -63,7 +64,8 @@ You can learn more about the NativeScript core theme at https://github.com/nativ
                <WebImage  (tap)="onNavigate(item.value.id)" class="image-list" [src]="item.value.image" stretch="Fill">
               </WebImage>
                 <GridLayout rows="auto" columns="auto *">
-                    <button style="margin-left:80%;margin-top:-40px;" [color]="item.value.favoris ? 'red':'green'" class="button-player" [text]="item.value.favoris ? 'Remove' : 'Add'" (tap)="addFavorite(item.key,item.value.favoris)"></button>
+                    <button  *ngIf="item.value.favoris == false" style="margin-left:75%;margin-top:-50px;" color="orange" class="far" text="&#xf005;" (tap)="addFavorite(item.key,item.value.favoris)"></button>
+                    <button  *ngIf="item.value.favoris == true" style="margin-left:75%;margin-top:-50px;" color="orange" class="fas" text="&#xf005;" (tap)="addFavorite(item.key,item.value.favoris)"></button>
                     <Label  class="text-home" [text]="item.key"></Label>
                  </GridLayout>
             </StackLayout>
