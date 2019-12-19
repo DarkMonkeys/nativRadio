@@ -29,10 +29,13 @@ export class ItemsComponent implements OnInit {
 
     ngOnInit(): void {
         
+        
+        //  somethingElse = page.getViewById('');
+        //somethingElse.focus();
 
          this.items = this.itemService.getItems();
          if (ios) {
-            this.transitions = ["flip"];
+            this.transitions = ["fdlip"];
         } else {
             this.transitions = ["flip"];
         }

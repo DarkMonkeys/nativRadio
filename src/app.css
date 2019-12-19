@@ -43,21 +43,23 @@ Button.-primary {
 }
 .far {
     font-family: Font Awesome 5 Free, fa-regular-400;
-    font-weight: 600; 
-    font-size:20px;
-    z-index: 1000;
+    font-size:25px;
+    z-index: 1;
+    height: 165px;
 }
 
 .fab {
     font-family: Font Awesome 5 Brands, fa-brands-400;
     font-weight: 400; 
     font-size:20px;
-    z-index: 1000;
+    z-index: 1;
+    height: 165px;
 }
 
 .fas {
     font-family: Font Awesome 5 Free, fa-solid-900;
     font-weight: 1000; 
     font-size:20px;
-    z-index: 1000;
+    z-index: 1;
+    height: 165px;
 }
