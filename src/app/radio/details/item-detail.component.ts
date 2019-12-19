@@ -59,7 +59,7 @@ export class ItemDetailComponent implements OnInit, OnDestroy {
         this.player.android;
 
         const playerOptions = {
-            audioFile: this.item.streamurl, //this.item.streamurl,  https://www.w3schools.com/html/horse.mp3
+            audioFile: this.item.streamurl,
             loop: false,
             autoplay: false,
         };
@@ -91,6 +91,11 @@ export class ItemDetailComponent implements OnInit, OnDestroy {
     }
     resume(){
         this.playerLoad();
+        this.isBusy = true;
+        setTimeout(() => {
+            this.isBusy = false;
+        }, 4000);
+        
     }
 
     ngOnDestroy() {
