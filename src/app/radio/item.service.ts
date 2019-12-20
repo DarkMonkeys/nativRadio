@@ -1,18 +1,22 @@
 import { Injectable } from "@angular/core";
 import { Item } from "./item";
+const appSettings = require("tns-core-modules/application-settings");
 @Injectable({
     providedIn: "root"
 })
+
 export class ItemService {
 
     item: Item;
     itemArray: Item;
     private items = new Map<String,Item>();
+    private arrayFavorites = new Array();
+    private cpt:number = 0;
       
         
 
     constructor(){
-        
+
         this.items.set("Rouge FM",{ id: 1, streamurl: "https://onefm.ice.infomaniak.ch/rougefm-high.mp3", image: "https://upload.wikimedia.org/wikipedia/fr/9/92/Rouge_FM_2011_logo.png",description:"quel couleur ta radio?", favoris:false }),
         this.items.set("Radio Lac",{ id: 2, streamurl: "https://radiolac.ice.infomaniak.ch/radiolac-high.mp3", image: "https://www.rts.ch/2018/08/31/14/11/9812189.image/16x9/scale/width/624",description:"quel couleur ta radio?",favoris:false }),
         this.items.set("Virgin Radio Rock Switzerland",{ id: 3, streamurl: "http://icecast.argovia.ch/vrock", image: "https://cdn-profiles.tunein.com/s303413/images/logog.png",description:"quel couleur ta radio?" ,favoris:false}),
@@ -27,8 +31,19 @@ export class ItemService {
     }
 
     getItems(): Map<String,Item> {
-
-            return this.items;
+            if(appSettings.getString("favorites") == null){
+                return this.items;
+            }
+            else{
+               this.arrayFavorites = JSON.parse(appSettings.getString("favorites","[]"));
+                this.cpt = 0;
+                this.items.forEach(element => {
+                    element.favoris = this.arrayFavorites[this.cpt];
+                    this.cpt++;
+                });
+                return this.items;
+            }
+            
     
     }
 

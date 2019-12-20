@@ -9,6 +9,8 @@ registerElement("WebImage", () => require("nativescript-web-image-cache").WebIma
 var imageCache = require("nativescript-web-image-cache");
 import * as Toast from 'nativescript-toast';
 import { Page, isAndroid } from "tns-core-modules/ui/page/page";
+import { from } from "rxjs";
+const appSettings = require("tns-core-modules/application-settings");
 
 @Component({
     selector: "ns-items",
@@ -17,6 +19,8 @@ import { Page, isAndroid } from "tns-core-modules/ui/page/page";
 })
 export class ItemsComponent implements OnInit {
     private items = new Map<String,Item>();
+    private arrayFavorites = new Array();
+    private cpt:number = 0;
     private itemsNew = new Map<String,Item>();
     transitions;
     searchPhrase: string;
@@ -89,18 +93,35 @@ export class ItemsComponent implements OnInit {
             this.items.get(keyItem).favoris = false;
             var toast = Toast.makeText("Webradio supprimée des favoris !");
             toast.show();
+            this.cpt = 0;
+            this.items.forEach(element => {
+                
+                this.arrayFavorites[this.cpt] = element.favoris;
+                this.cpt++;
+            });
+            appSettings.setString("favorites", JSON.stringify(this.arrayFavorites));
 
         } else{
 
             this.items.get(keyItem).favoris = true;
             var toast = Toast.makeText("Webradio ajoutée dans les favoris !");
             toast.show();
+            this.cpt = 0;
+            this.items.forEach(element => {
+                this.arrayFavorites[this.cpt] = element.favoris;
+                this.cpt++;
+            });
+            appSettings.setString("favorites", JSON.stringify(this.arrayFavorites));
         }
    }
    
     sBLoaded(args){
-    const searchBar = args.object as SearchBar;
-    searchBar.dismissSoftInput();
+
+const searchBar = args.object as SearchBar;
+    setTimeout(() => {
+        searchBar.dismissSoftInput();
+    }, 300);
+
   
 }
      onClear(args){

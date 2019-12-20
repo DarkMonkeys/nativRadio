@@ -34,7 +34,6 @@ export class ItemDetailComponent implements OnInit, OnDestroy {
     }
     onBusyChanged(args: EventData) {
         let indicator: ActivityIndicator = <ActivityIndicator>args.object;
-        console.log("indicator.busy changed to: " + indicator.busy);
     }
 
     ngOnInit(): void {
